@@ -42,6 +42,17 @@ struct HobbiesView: View {
             }
             .padding()
             .safeAreaPadding(.horizontal, 10).scrollIndicators(.hidden)
+            .onScrollGeometryChange(for: CGFloat.self, of: { geometry in
+                            geometry.contentOffset.y
+                        }, action: { oldValue, newValue in
+                            if newValue > oldValue {
+                                withAnimation {
+                                    showTab = false
+                                }
+                            } else if newValue < oldValue + 10 {
+                                showTab = true
+                            }
+                        })
             .onAppear {
                 animateHobbies = true
             }

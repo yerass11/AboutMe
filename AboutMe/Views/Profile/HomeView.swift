@@ -24,7 +24,6 @@ struct HomeView: View {
     }
 }
 
-// MARK: - Subviews
 private extension HomeView {
     var headerSection: some View {
         Text("Profile")
@@ -54,7 +53,15 @@ private extension HomeView {
         .scrollIndicators(.hidden)
         .onScrollGeometryChange(for: CGFloat.self, of: { geometry in
             geometry.contentOffset.y
-        }, action: handleScroll)
+        }, action: { oldValue, newValue in
+            if newValue > oldValue {
+                withAnimation {
+                    showTab = false
+                }
+            } else if newValue < oldValue + 10 {
+                showTab = true
+            }
+        })
     }
     
     var profileImage: some View {
@@ -117,18 +124,11 @@ private extension HomeView {
     }
 }
 
-// MARK: - Functions
 private extension HomeView {
     func startAnimations() {
         animateProfile = true
         animateText = true
         animateGitHub = true
-    }
-    
-    func handleScroll(oldValue: CGFloat, newValue: CGFloat) {
-        withAnimation {
-            showTab = newValue < oldValue + 10
-        }
     }
 }
 
