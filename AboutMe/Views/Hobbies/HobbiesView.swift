@@ -33,31 +33,8 @@ struct HobbiesView: View {
 
             ScrollView {
                 LazyVGrid(columns: [GridItem(), GridItem()]) {
-                    ForEach(hobbies, id: \.self) { hobby in
-                        VStack {
-                            Image(systemName: hobby.icon)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 60, height: 60)
-                                .padding()
-                                .scaleEffect(selectedHobby == hobby ? 1.2 : 1)
-                                .animation(.spring(response: 0.4, dampingFraction: 0.6), value: selectedHobby)
-                            
-                            Text(hobby.name)
-                                .font(.headline)
-                        }
-                        .frame(width: 150, height: 150)
-                        .background(Color(.systemGray5))
-                        .cornerRadius(12)
-                        .padding(6)
-                        .opacity(animateHobbies ? 1 : 0)
-                        .offset(y: animateHobbies ? 0 : 15)
-                        .animation(.easeOut(duration: 0.5).delay(Double(hobbies.firstIndex(where: { $0 == hobby }) ?? 0) * 0.1), value: animateHobbies)
-                        .onTapGesture {
-                            withAnimation {
-                                selectedHobby = hobby
-                            }
-                        }
+                    ForEach(hobbies, id: \..name) { hobby in
+                        HobbyCard(hobby: hobby, selectedHobby: $selectedHobby, animateHobbies: animateHobbies)
                     }
                     .padding()
                 }
@@ -65,30 +42,16 @@ struct HobbiesView: View {
             }
             .padding()
             .safeAreaPadding(.horizontal, 10).scrollIndicators(.hidden)
-            .onScrollGeometryChange(for: CGFloat.self, of: { geometry in
-                geometry.contentOffset.y
-            }, action: { oldValue, newValue in
-                if newValue > oldValue {
-                    withAnimation {
-                        showTab = false
-                    }
-                } else if newValue < oldValue + 5 {
-                    showTab = true
-                }
-            })
+            .onAppear {
+                animateHobbies = true
+            }
             .sheet(item: $selectedHobby) { hobby in
                 HobbyDetailView(hobby: hobby)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
-        .onAppear {
-            animateHobbies = true
-        }
     }
 }
-
-
-
 
 
 #Preview {
