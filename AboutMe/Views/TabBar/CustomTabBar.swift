@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-let tabItems = [
-    TabBar(iconName: "house", tab: .home),
-    TabBar(iconName: "heart", tab: .favourites),
-    TabBar(iconName: "trophy", tab: .goals),
-]
+
 
 struct CustomTabBar: View {
+    let tabItems = [
+        TabBar(iconName: "house", tab: .home),
+        TabBar(iconName: "heart", tab: .favourites),
+        TabBar(iconName: "trophy", tab: .goals),
+    ]
     @Binding var selectedTab: TabIcon
     @Namespace var animationNamespace
     

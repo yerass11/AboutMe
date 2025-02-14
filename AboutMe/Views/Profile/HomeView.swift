@@ -104,9 +104,6 @@ struct HomeView: View {
     }
 }
 
-
-
-
 #Preview {
     HomeView(showTab: .constant(true))
 }

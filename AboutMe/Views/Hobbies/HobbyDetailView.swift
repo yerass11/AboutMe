@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct HobbyDetailView: View {
+    let hobby: Hobby
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 20) {
+            YouTubeShortsWebView(shortsURL: hobby.shortsURL)
+                .frame(height: 500)
+                .cornerRadius(10)
+                .shadow(radius: 5)
+            Text(hobby.name)
+                .font(.title.bold())
+            Text(hobby.description)
+                .font(.body)
+                .multilineTextAlignment(.center)
+                .padding()
+            Spacer()
+        }
+        .padding()
     }
 }
 
-#Preview {
-    HobbyDetailView()
-}

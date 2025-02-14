@@ -8,16 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var showTab: Bool = true
+    @State var selectedTab: TabIcon = .home
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            switch selectedTab {
+            case .home:
+                HomeView(showTab: $showTab)
+            case .favourites:
+                HobbiesView(showTab: $showTab)
+            case .goals:
+                GoalsView()
+            }
         }
-        .padding()
+        .overlay(alignment: .bottom) {
+            if showTab {
+                CustomTabBar(selectedTab: $selectedTab)
+                    .transition(.offset(y: 300))
+            }
+        }
     }
 }
+
+
 
 #Preview {
     ContentView()

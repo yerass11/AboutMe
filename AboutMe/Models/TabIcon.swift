@@ -5,4 +5,8 @@
 //  Created by Yerasyl on 14.02.2025.
 //
 
-import Foundation
+enum TabIcon: String {
+    case home
+    case favourites
+    case goals
+}
