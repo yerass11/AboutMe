@@ -40,7 +40,3 @@ struct HobbyCard: View {
     }
 }
 
-
-#Preview {
-    HobbyCard()
-}
