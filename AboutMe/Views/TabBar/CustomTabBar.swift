@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct CustomTabBar: View {
     let tabItems = [
         TabBar(iconName: "house", tab: .home),
