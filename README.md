@@ -16,14 +16,15 @@ A personal profile app built with **SwiftUI**, showcasing my goals, hobbies, and
 
 ## 📸 Screenshots  
 
-### 🏠 Home Screen  
-![Home Screen]()  
-
-### 🎯 Goals Screen  
-![Goals Screen]()  
+### 🏠 Profile screen  
+![BIO](Screenshots/Profile1.png)  
+![Projects](Screenshots/Profile2.png)  
 
 ### ⚽ Hobbies Screen  
-![Hobbies Screen]()  
+![Hobbies Screen](Screenshots/Hobbies.png)  
+
+### 🎯 Goals Screen  
+![Goals Screen](Screenshots/Goals.png)  
 
 ---
 
